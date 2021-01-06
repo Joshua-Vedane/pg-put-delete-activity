@@ -6,8 +6,9 @@ $(document).ready(function(){
 
 function addClickHandlers() {
   $('#submitBtn').on('click', handleSubmit);
-
   // TODO - Add code for edit & delete buttons
+  $('#bookShelf').on('click', '.deleteBtn', handleDelete);
+
 }
 
 function handleSubmit() {
@@ -46,6 +47,11 @@ function refreshBooks() {
   });
 }
 
+//Delete Book from the server
+function handleDelete() {
+  console.log('clicked delete');
+}
+
 
 // Displays an array of books to the DOM
 function renderBooks(books) {
@@ -58,6 +64,8 @@ function renderBooks(books) {
     $tr.data('book', book);
     $tr.append(`<td>${book.title}</td>`);
     $tr.append(`<td>${book.author}</td>`);
+    $tr.append(`<td><button class='deleteBtn'>DELETE</button>`)
+    // console.log($tr);
     $('#bookShelf').append($tr);
   }
 }
