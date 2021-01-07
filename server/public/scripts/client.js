@@ -50,6 +50,17 @@ function refreshBooks() {
 //Delete Book from the server
 function handleDelete() {
   console.log('clicked delete');
+  const id = $(this).closest('tr').data('id');
+  console.log(id);
+  $.ajax({
+    type: 'DELETE',
+    url: `/books/${id}`
+  }).then(function(response){
+    //get updated list
+    refreshBooks();
+  }).catch(function(error){
+    alert('error in delete');
+  })
 }
 
 
@@ -60,7 +71,7 @@ function renderBooks(books) {
   for(let i = 0; i < books.length; i += 1) {
     let book = books[i];
     // For each book, append a new row to our table
-    let $tr = $('<tr></tr>');
+    let $tr = $(`<tr data-id=${book.id}></tr>`);
     $tr.data('book', book);
     $tr.append(`<td>${book.title}</td>`);
     $tr.append(`<td>${book.author}</td>`);
