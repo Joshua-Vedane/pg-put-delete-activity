@@ -87,7 +87,10 @@ function renderBooks(books) {
   for(let i = 0; i < books.length; i += 1) {
     let book = books[i];
     // For each book, append a new row to our table
+    //make a table row in memory
     let $tr = $(`<tr data-id=${book.id}></tr>`);
+    //since it's a jquery variable, we can do jq stuff with it. 
+    //attatching entire book object as .data
     $tr.data('book', book);
     $tr.append(`<td>${book.title}</td>`);
     $tr.append(`<td>${book.author}</td>`);
